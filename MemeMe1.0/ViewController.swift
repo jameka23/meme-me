@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func pickAnImage(_ sender: Any) {
         let pickImageController = UIImagePickerController()
         pickImageController.delegate = self
+        pickImageController.sourceType = .photoLibrary
         present(pickImageController, animated: true, completion: nil)
     }
     

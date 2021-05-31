@@ -54,6 +54,7 @@
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="E5q-fz-BKo"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Album" id="T15-ef-maR"/>
                                 </items>
                             </toolbar>
                         </subviews>
