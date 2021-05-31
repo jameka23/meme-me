@@ -54,7 +54,11 @@
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="E5q-fz-BKo"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Album" id="T15-ef-maR"/>
+                                    <barButtonItem title="Camera" id="T15-ef-maR">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="XBM-Rb-awK"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -76,7 +80,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="albumButton" destination="8uo-pb-HBL" id="jQA-ds-VeI"/>
                         <outlet property="bottomTextfield" destination="y3g-qz-KNt" id="fh4-2Q-ypT"/>
+                        <outlet property="cameraButton" destination="Qd3-BG-Vix" id="lgc-jw-fu0"/>
                         <outlet property="cancelButton" destination="VkP-aF-H2y" id="bAh-4H-he4"/>
                         <outlet property="imageViewPicker" destination="bGP-0R-PVj" id="0jj-YR-SzV"/>
                         <outlet property="topTextfield" destination="4Es-c8-gjl" id="ziE-fW-tX6"/>
