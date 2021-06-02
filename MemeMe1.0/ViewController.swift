@@ -25,6 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var memeImage: UIImage?
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //disable the upload button
@@ -49,10 +50,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // enable the upload button once the top and bottom text have values and the imageviewpicker has an image
-        if bottomTextfield.text != nil && topTextfield.text != nil && imageViewPicker.image != nil {
-            uploadButton.isEnabled = true
-        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -60,28 +57,55 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
         unsubscribeFromHideKeyboardNotifications()
     }
+    
+    
+    //MARK: handle the MemedImage
+    func generateMemedImage() -> UIImage {
 
-    // MARK: ACTIONs for choosing an image or taking one
+        // TODO: Hide toolbar and navbar
+
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        // TODO: Show toolbar and navbar
+
+        return memedImage
+    }
+
+    // MARK: ACTIONs for choosing an image or camera & saving
     @IBAction func pickAnImage(_ sender: Any) {
+        uploadButton.isEnabled = true
         let pickImageController = UIImagePickerController()
         pickImageController.delegate = self
         pickImageController.sourceType = .photoLibrary
         present(pickImageController, animated: true, completion: nil)
     }
     
+    @IBAction func save(_ sender: Any) {
+        let image = generateMemedImage()
+        
+        let activityController = UIActivityViewController(activityItems:[image],applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        uploadButton.isEnabled = true
         let cameraController = UIImagePickerController()
         cameraController.delegate = self
         cameraController.sourceType = .camera
         present(cameraController, animated: true, completion: nil)
+        
     }
     
     
     // MARK: Protocols for image picker
-    // save the chosen image to the imageViewPicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // save the chosen image to the imageViewPicker
         let pic = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        
         imageViewPicker.image = pic
     }
     
