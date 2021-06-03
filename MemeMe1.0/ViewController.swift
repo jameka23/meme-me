@@ -13,7 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var bottomTextfield: UITextField!
     @IBOutlet weak var topTextfield: UITextField!
-    @IBOutlet weak var cameraButton: UIToolbar!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -29,7 +29,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
+        
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        if !cameraButton.isEnabled {
+            cameraButton.isEnabled = false
+        }
         
         //disable the upload button
         uploadButton.isEnabled = false;
@@ -39,7 +44,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  1.2
+            NSAttributedString.Key.strokeWidth:  -5.0
         ]
         
         topTextfield.defaultTextAttributes = memeTextAttributes
@@ -56,7 +61,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
+        super.viewDidDisappear(animated)
         unsubscribeFromKeyboardNotifications()
         unsubscribeFromHideKeyboardNotifications()
     }
@@ -103,7 +108,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if completed {
                 //save the meme
                 self.meme = Meme(topText: self.topTextfield.text, bottomText: self.bottomTextfield.text, originalImage: self.imageViewPicker.image, memeImage: image)
-                dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }else{
                 print("cancelled")
             }
@@ -129,6 +134,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // save the chosen image to the imageViewPicker
         let pic = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         imageViewPicker.image = pic
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -138,10 +144,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK : Protocols for textfield
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
         textField.clearsOnBeginEditing = true
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     
@@ -155,7 +164,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomTextfield.isFirstResponder{
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -163,11 +174,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
-    
+
     func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func subscribeToHideKeyboardNotifications(){
