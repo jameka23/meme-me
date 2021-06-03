@@ -47,10 +47,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSAttributedString.Key.strokeWidth:  -5.0
         ]
         
+        self.view.backgroundColor = UIColor.black
+        
         topTextfield.defaultTextAttributes = memeTextAttributes
         topTextfield.textAlignment = .center
+        topTextfield.backgroundColor = UIColor.black
         bottomTextfield.defaultTextAttributes = memeTextAttributes
         bottomTextfield.textAlignment = .center
+        bottomTextfield.backgroundColor = UIColor.black
         
         
         subscribeToKeyboardNotifications()
