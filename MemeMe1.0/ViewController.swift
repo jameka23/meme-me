@@ -56,19 +56,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextfield.textAlignment = .center
         bottomTextfield.backgroundColor = UIColor.black
         
-        
         subscribeToKeyboardNotifications()
-        subscribeToHideKeyboardNotifications()
+//        subscribeToKeyboardNotifications()
+//        subscribeToHideKeyboardNotifications()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bottomTextfield.delegate = self
+        topTextfield.delegate = self
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         unsubscribeFromKeyboardNotifications()
-        unsubscribeFromHideKeyboardNotifications()
+//        unsubscribeFromKeyboardNotifications()
+//        unsubscribeFromHideKeyboardNotifications()
     }
     
     
@@ -124,6 +127,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    @IBAction func cancel(_ sender: Any) {
+        topTextfield.text = .none
+        topTextfield.text = "TOP"
+        
+        bottomTextfield.text = .none
+        bottomTextfield.text = "BOTTOM"
+        
+        imageViewPicker.image = .none
+    }
+    
+    
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         uploadButton.isEnabled = true
         let cameraController = UIImagePickerController()
@@ -175,24 +189,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        view.frame.origin.y = 0
-        bottomTextfield.resignFirstResponder()
+
+        if bottomTextfield.isEditing {
+            view.frame.origin.y = 0
+        }
     }
+    
     
     func subscribeToKeyboardNotifications() {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           
+           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func subscribeToHideKeyboardNotifications(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func unsubscribeFromHideKeyboardNotifications(){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+         
+         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+     }
+//
+//    func subscribeToKeyboardNotifications() {
+//            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//    }
+//
+//    func unsubscribeFromKeyboardNotifications() {
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//    }
+//
+//    func subscribeToHideKeyboardNotifications(){
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//
+//    func unsubscribeFromHideKeyboardNotifications(){
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
 }
 

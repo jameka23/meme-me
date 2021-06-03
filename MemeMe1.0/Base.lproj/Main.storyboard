@@ -25,7 +25,11 @@
                                                 <action selector="save:" destination="BYZ-38-t0r" id="UGe-Mo-R4r"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="VkP-aF-H2y"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="VkP-aF-H2y">
+                                            <connections>
+                                                <action selector="cancel:" destination="BYZ-38-t0r" id="UQL-aa-Ge0"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
