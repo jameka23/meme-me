@@ -57,8 +57,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextfield.backgroundColor = UIColor.black
         
         subscribeToKeyboardNotifications()
-//        subscribeToKeyboardNotifications()
-//        subscribeToHideKeyboardNotifications()
     }
     
     override func viewDidLoad() {
@@ -70,8 +68,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         unsubscribeFromKeyboardNotifications()
-//        unsubscribeFromKeyboardNotifications()
-//        unsubscribeFromHideKeyboardNotifications()
     }
     
     
@@ -101,6 +97,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickImageController.delegate = self
         pickImageController.sourceType = .photoLibrary
         present(pickImageController, animated: true, completion: nil)
+    }
+    
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        uploadButton.isEnabled = true
+        let cameraController = UIImagePickerController()
+        cameraController.delegate = self
+        cameraController.sourceType = .camera
+        present(cameraController, animated: true, completion: nil)
+        
     }
     
     @IBAction func save(_ sender: Any) {
@@ -138,14 +143,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        uploadButton.isEnabled = true
-        let cameraController = UIImagePickerController()
-        cameraController.delegate = self
-        cameraController.sourceType = .camera
-        present(cameraController, animated: true, completion: nil)
-        
-    }
     
     
     // MARK: Protocols for image picker
@@ -207,21 +204,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          
          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
      }
-//
-//    func subscribeToKeyboardNotifications() {
-//            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//    }
-//
-//    func unsubscribeFromKeyboardNotifications() {
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//    }
-//
-//    func subscribeToHideKeyboardNotifications(){
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
-//
-//    func unsubscribeFromHideKeyboardNotifications(){
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
+
 }
 
