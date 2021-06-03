@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var bottomTextfield: UITextField!
     @IBOutlet weak var topTextfield: UITextField!
     @IBOutlet weak var cameraButton: UIToolbar!
@@ -28,6 +30,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         //disable the upload button
         uploadButton.isEnabled = false;
         
@@ -61,9 +64,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: handle the MemedImage
     func generateMemedImage() -> UIImage {
-
         // TODO: Hide toolbar and navbar
-
+        toolBar.isHidden = true
+        navBar.isHidden = true
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -71,7 +75,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
 
         // TODO: Show toolbar and navbar
-
+        toolBar.isHidden = false
+        navBar.isHidden = false
+        
         return memedImage
     }
 
@@ -88,8 +94,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let image = generateMemedImage()
         
         let activityController = UIActivityViewController(activityItems:[image],applicationActivities: nil)
+
         present(activityController, animated: true, completion: nil)
         
+        //completion handler
+        activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed:
+                                                            Bool, arrayReturnedItems: [Any]?, error: Error?) in
+            if completed {
+                //save the meme
+                self.meme = Meme(topText: self.topTextfield.text, bottomText: self.bottomTextfield.text, originalImage: self.imageViewPicker.image, memeImage: image)
+                dismiss(animated: true, completion: nil)
+            }else{
+                print("cancelled")
+            }
+            
+            if let shareError = error {
+                print("error while sharing: \(shareError.localizedDescription)")
+            }
+        }
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {

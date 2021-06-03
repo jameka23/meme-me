@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="35" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="MemeMe 1.0" id="UIb-G5-Sds">
-                                        <barButtonItem key="leftBarButtonItem" title="Upload" image="square.and.arrow.up.on.square" catalog="system" id="H2c-2S-YTL">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="H2c-2S-YTL">
                                             <connections>
                                                 <action selector="save:" destination="BYZ-38-t0r" id="UGe-Mo-R4r"/>
                                             </connections>
@@ -28,7 +28,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGP-0R-PVj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGP-0R-PVj">
                                 <rect key="frame" x="87" y="390" width="240" height="128"/>
                                 <color key="backgroundColor" red="1" green="0.36490446640000002" blue="0.82576948949999995" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -38,14 +38,15 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="xZG-30-URK"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-qz-KNt">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-qz-KNt">
                                 <rect key="frame" x="0.0" y="790" width="414" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="7we-7m-XaA"/>
                                     <constraint firstAttribute="width" constant="414" id="o0X-Nw-qu9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qd3-BG-Vix">
                                 <rect key="frame" x="0.0" y="834" width="414" height="44"/>
@@ -63,14 +64,15 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Es-c8-gjl">
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Es-c8-gjl">
                                 <rect key="frame" x="0.0" y="79" width="414" height="50.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="JFQ-tF-JrF"/>
                                     <constraint firstAttribute="width" constant="414" id="L0h-dp-hfb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -97,6 +99,8 @@
                         <outlet property="cameraButton" destination="Qd3-BG-Vix" id="lgc-jw-fu0"/>
                         <outlet property="cancelButton" destination="VkP-aF-H2y" id="bAh-4H-he4"/>
                         <outlet property="imageViewPicker" destination="bGP-0R-PVj" id="0jj-YR-SzV"/>
+                        <outlet property="navBar" destination="hiE-cp-3gj" id="9D0-Ns-r1h"/>
+                        <outlet property="toolBar" destination="Qd3-BG-Vix" id="Lrn-7H-T9k"/>
                         <outlet property="topTextfield" destination="4Es-c8-gjl" id="ziE-fW-tX6"/>
                         <outlet property="uploadButton" destination="H2c-2S-YTL" id="7BS-wX-y1j"/>
                     </connections>
@@ -106,7 +110,4 @@
             <point key="canvasLocation" x="-158" y="26"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="square.and.arrow.up.on.square" catalog="system" width="117" height="128"/>
-    </resources>
 </document>
