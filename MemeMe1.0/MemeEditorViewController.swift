@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -18,43 +19,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var imageViewPicker: UIImageView!
-    var meme: Meme!
+    var meme = Meme()
     
-    struct Meme {
-        var topText: String?
-        var bottomText: String?
-        var originalImage: UIImage?
-        var memeImage: UIImage?
-    }
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        if !cameraButton.isEnabled {
-            cameraButton.isEnabled = false
-        }
         
         //disable the upload button
         uploadButton.isEnabled = false;
         
-        //        topTextfield.defaultTextAttributes =
-        let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.black,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  -5.0
-        ]
-        
         self.view.backgroundColor = UIColor.black
+
         
-        topTextfield.defaultTextAttributes = memeTextAttributes
-        topTextfield.textAlignment = .center
-        topTextfield.backgroundColor = UIColor.black
-        bottomTextfield.defaultTextAttributes = memeTextAttributes
-        bottomTextfield.textAlignment = .center
-        bottomTextfield.backgroundColor = UIColor.black
+        // setup textfields
+        setupTextField(textField: topTextfield)
+        setupTextField(textField: bottomTextfield)
         
         subscribeToKeyboardNotifications()
     }
@@ -90,23 +71,52 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
     }
 
+    
+    
+    // Handle textfield setup
+    func setupTextField(textField: UITextField){
+
+        // topTextfield.defaultTextAttributes =
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth:  -5.0
+        ]
+        
+        topTextfield.defaultTextAttributes = memeTextAttributes
+        topTextfield.textAlignment = .center
+        topTextfield.backgroundColor = UIColor.black
+        bottomTextfield.defaultTextAttributes = memeTextAttributes
+        bottomTextfield.textAlignment = .center
+        bottomTextfield.backgroundColor = UIColor.black
+    }
+    
+    
+    
     // MARK: ACTIONs for choosing an image or camera & saving
     @IBAction func pickAnImage(_ sender: Any) {
-        uploadButton.isEnabled = true
-        let pickImageController = UIImagePickerController()
-        pickImageController.delegate = self
-        pickImageController.sourceType = .photoLibrary
+
+        let pickImageController = pickImage(type: UIImagePickerController.SourceType.photoLibrary)
         present(pickImageController, animated: true, completion: nil)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        uploadButton.isEnabled = true
-        let cameraController = UIImagePickerController()
-        cameraController.delegate = self
-        cameraController.sourceType = .camera
+
+        let cameraController = pickImage(type: UIImagePickerController.SourceType.camera)
         present(cameraController, animated: true, completion: nil)
         
     }
+    
+    // general functions
+    func pickImage(type: UIImagePickerController.SourceType) -> UIImagePickerController {
+        uploadButton.isEnabled = true
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = type
+        return controller
+    }
+    
     
     @IBAction func save(_ sender: Any) {
         let image = generateMemedImage()
@@ -116,8 +126,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(activityController, animated: true, completion: nil)
         
         //completion handler
-        activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed:
-                                                            Bool, arrayReturnedItems: [Any]?, error: Error?) in
+        activityController.completionWithItemsHandler = {(_ activityType: UIActivity.ActivityType?, completed:
+                                                            Bool, _ arrayReturnedItems: [Any]?, error: Error?) in
             if completed {
                 //save the meme
                 self.meme = Meme(topText: self.topTextfield.text, bottomText: self.bottomTextfield.text, originalImage: self.imageViewPicker.image, memeImage: image)
@@ -200,9 +210,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func unsubscribeFromKeyboardNotifications() {
-         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-         
-         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//         
+//         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self)
      }
 
 }

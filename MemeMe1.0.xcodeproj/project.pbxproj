@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		6931C2A72662B1680097BFAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6931C2A62662B1680097BFAD /* AppDelegate.swift */; };
 		6931C2A92662B1680097BFAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6931C2A82662B1680097BFAD /* SceneDelegate.swift */; };
-		6931C2AB2662B1680097BFAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6931C2AA2662B1680097BFAD /* ViewController.swift */; };
+		6931C2AB2662B1680097BFAD /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6931C2AA2662B1680097BFAD /* MemeEditorViewController.swift */; };
 		6931C2AE2662B1680097BFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6931C2AC2662B1680097BFAD /* Main.storyboard */; };
 		6931C2B02662B16B0097BFAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6931C2AF2662B16B0097BFAD /* Assets.xcassets */; };
 		6931C2B32662B16B0097BFAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6931C2B12662B16B0097BFAD /* LaunchScreen.storyboard */; };
+		69A0B7C62669D07400C9C6BE /* MemeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A0B7C52669D07400C9C6BE /* MemeExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6931C2A32662B1680097BFAD /* MemeMe1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6931C2A62662B1680097BFAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6931C2A82662B1680097BFAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6931C2AA2662B1680097BFAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6931C2AA2662B1680097BFAD /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
 		6931C2AD2662B1680097BFAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6931C2AF2662B16B0097BFAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6931C2B22662B16B0097BFAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6931C2B42662B16B0097BFAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A0B7C52669D07400C9C6BE /* MemeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				6931C2A62662B1680097BFAD /* AppDelegate.swift */,
 				6931C2A82662B1680097BFAD /* SceneDelegate.swift */,
-				6931C2AA2662B1680097BFAD /* ViewController.swift */,
+				6931C2AA2662B1680097BFAD /* MemeEditorViewController.swift */,
 				6931C2AC2662B1680097BFAD /* Main.storyboard */,
 				6931C2AF2662B16B0097BFAD /* Assets.xcassets */,
 				6931C2B12662B16B0097BFAD /* LaunchScreen.storyboard */,
 				6931C2B42662B16B0097BFAD /* Info.plist */,
+				69A0B7C52669D07400C9C6BE /* MemeExt.swift */,
 			);
 			path = MemeMe1.0;
 			sourceTree = "<group>";
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6931C2AB2662B1680097BFAD /* ViewController.swift in Sources */,
+				6931C2AB2662B1680097BFAD /* MemeEditorViewController.swift in Sources */,
+				69A0B7C62669D07400C9C6BE /* MemeExt.swift in Sources */,
 				6931C2A72662B1680097BFAD /* AppDelegate.swift in Sources */,
 				6931C2A92662B1680097BFAD /* SceneDelegate.swift in Sources */,
 			);
