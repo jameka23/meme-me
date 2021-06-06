@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe1_0" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" id="hiE-cp-3gj">
@@ -91,37 +91,55 @@
             <objects>
                 <viewController id="3Xt-XO-tff" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ljS-gq-tey">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMF-Nz-ub3">
-                                <rect key="frame" x="44" y="-133" width="1290" height="44"/>
+                                <rect key="frame" x="0.0" y="1300" width="0.0" height="44"/>
                                 <items>
                                     <barButtonItem title="Item" id="TmC-vN-xbe"/>
                                 </items>
                             </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHv-ve-h1H">
-                                <rect key="frame" x="44" y="0.0" width="1290" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="0.0" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="eV4-K9-Qdl"/>
                                 </items>
                             </navigationBar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNY-Uc-cWn">
-                                <rect key="frame" x="44" y="44" width="808" height="305"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YAS-Ft-l9C">
+                                <rect key="frame" x="159" y="679.5" width="97" height="50.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP TOP" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DaS-AV-eMI">
+                                <rect key="frame" x="159" y="138" width="97" height="50.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c3u-Vg-TBK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="c3u-Vg-TBK" firstAttribute="trailing" secondItem="DaS-AV-eMI" secondAttribute="trailing" constant="158" id="4h1-D4-f8I"/>
                             <constraint firstItem="c3u-Vg-TBK" firstAttribute="top" secondItem="WHv-ve-h1H" secondAttribute="top" id="5s9-HK-4lb"/>
+                            <constraint firstItem="DaS-AV-eMI" firstAttribute="leading" secondItem="c3u-Vg-TBK" secondAttribute="leading" constant="159" id="8Tx-So-hDV"/>
                             <constraint firstItem="c3u-Vg-TBK" firstAttribute="trailing" secondItem="WHv-ve-h1H" secondAttribute="trailing" id="BS8-H7-pJF"/>
                             <constraint firstItem="WHv-ve-h1H" firstAttribute="leading" secondItem="c3u-Vg-TBK" secondAttribute="leading" id="Cxw-Eh-6Zc"/>
                             <constraint firstItem="bNY-Uc-cWn" firstAttribute="trailing" secondItem="c3u-Vg-TBK" secondAttribute="trailing" id="FWL-XO-Pur"/>
                             <constraint firstItem="kMF-Nz-ub3" firstAttribute="leading" secondItem="c3u-Vg-TBK" secondAttribute="leading" id="Lbj-wM-Qw8"/>
+                            <constraint firstItem="YAS-Ft-l9C" firstAttribute="top" relation="lessThanOrEqual" secondItem="WHv-ve-h1H" secondAttribute="bottom" constant="603" id="Mls-ZG-u1S"/>
+                            <constraint firstItem="YAS-Ft-l9C" firstAttribute="top" relation="lessThanOrEqual" secondItem="DaS-AV-eMI" secondAttribute="bottom" constant="504" id="ORT-1J-dZT"/>
                             <constraint firstItem="c3u-Vg-TBK" firstAttribute="trailing" secondItem="kMF-Nz-ub3" secondAttribute="trailing" id="PAp-PE-zZE"/>
                             <constraint firstItem="WHv-ve-h1H" firstAttribute="top" secondItem="c3u-Vg-TBK" secondAttribute="top" id="Ps5-U2-Tgh"/>
+                            <constraint firstItem="c3u-Vg-TBK" firstAttribute="trailing" secondItem="YAS-Ft-l9C" secondAttribute="trailing" constant="158" id="U8p-r7-VRi"/>
+                            <constraint firstItem="YAS-Ft-l9C" firstAttribute="leading" secondItem="c3u-Vg-TBK" secondAttribute="leading" constant="159" id="VIz-iN-BEH"/>
                             <constraint firstItem="kMF-Nz-ub3" firstAttribute="top" secondItem="bNY-Uc-cWn" secondAttribute="bottom" id="d5z-on-xw8"/>
+                            <constraint firstItem="DaS-AV-eMI" firstAttribute="top" secondItem="WHv-ve-h1H" secondAttribute="bottom" constant="50" id="haQ-15-eDK"/>
                             <constraint firstItem="c3u-Vg-TBK" firstAttribute="bottom" secondItem="kMF-Nz-ub3" secondAttribute="bottom" id="oM4-tL-U8y"/>
+                            <constraint firstItem="kMF-Nz-ub3" firstAttribute="top" secondItem="YAS-Ft-l9C" secondAttribute="bottom" constant="88" id="qXY-cy-qmy"/>
                             <constraint firstItem="bNY-Uc-cWn" firstAttribute="leading" secondItem="c3u-Vg-TBK" secondAttribute="leading" id="szf-hv-V5U"/>
                             <constraint firstItem="bNY-Uc-cWn" firstAttribute="top" secondItem="WHv-ve-h1H" secondAttribute="bottom" id="vNu-Cy-Fqa"/>
                         </constraints>
